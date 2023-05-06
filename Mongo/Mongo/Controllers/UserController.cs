@@ -19,7 +19,7 @@ namespace Mongo.Controllers
         {
             try
             {
-                return Ok(await _dataManager.GetUsers());
+                return Ok(await _dataManager.GetAsync());
             }
             catch (Exception ex)
             {

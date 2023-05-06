@@ -1,13 +1,15 @@
 using Mongo.DataManager;
+using Mongo.Models;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<MongoDBSettings>(
+    builder.Configuration.GetSection("MongoDatabase"));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton(new MongoClient("mongodb://localhost:27017").GetDatabase("mydb"));
 
 builder.Services.AddTransient<MongoDataManager>();
 
